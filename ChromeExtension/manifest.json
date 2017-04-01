@@ -1,0 +1,13 @@
+{
+    "name" : "ChromeExtension",
+    "description" : "an extension",
+    "version" : "1.0",
+
+    "background_page" : "background.html",
+
+    "browser_action" : {
+        "popup" : "popup.html",
+        "default_icon" : "icon.gif"
+    },
+    "permissions" : ["notifications"]
+}
