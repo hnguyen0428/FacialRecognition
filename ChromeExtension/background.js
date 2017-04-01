@@ -1,3 +1,3 @@
 chrome.browserAction.onClicked.addListener(function (tab) {
-    chrome.tabs.executeScript(null, {file: "login_script.js"});
+    chrome.tabs.executeScript(tab.id, {file: "login_script.js"});
 });
