@@ -1,6 +1,6 @@
 $.ajax({
 type: "POST",
-url: "~/Documents/Hoang/CSRelated/FacialRecognition/face_match.py",
+url: "http://127.0.0.1:5000",
 success: function(result) {
     if (result == "True") {
         // do an autofill

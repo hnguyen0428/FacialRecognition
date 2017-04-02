@@ -14,6 +14,8 @@ def main():
 
     if len(image_detect) != 0:
         image_face_id = image_detect[0]['faceId']
+    else:
+        return False
 
     matched = CF.face.verify(original_face_id, image_face_id)
     print matched
