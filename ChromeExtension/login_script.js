@@ -1,25 +1,42 @@
-$.ajax({
-type: "POST",
-url: "http://127.0.0.1:5000",
-success: function(result) {
-    if (result == "True") {
-        // do an autofill
-        var username = 'hnguyen0428@yahoo.com';
-        var password = '';
+url = 'http://127.0.0.1:5000'
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status);
+      }
+    };
+    xhr.send();
+};
 
-        var loginField = document.getElementById('email');
-        var passwordField = document.getElementById('pass');
+getJSON(url, function(err, data) {
+  if (err != null) {
+      alert('Something went wrong: ' + err);
+  } else {
+      console.log(data['match']);
+      if(data['match'] == true) {
+          var myUsername = '';
+          var myPassword = '';
 
-        // fills in username and password
-        loginField.value = username;
-        passwordField.value = password;
+          //finds the fields in your login form
+          var loginField = document.getElementById('email');
+          var passwordField = document.getElementById('pass');
 
-        // submits the form
-        var loginForm = document.getElementById ('signIn');
-        loginForm.submit()
+          //fills in your username and password
+          loginField.value = myUsername;
+          passwordField.value = myPassword;
 
-    } else {
-        alert("Unsuccessful login")
-    }
-}
+          //automatically submits the login form
+          var loginButton = document.getElementById('loginbutton');
+
+          loginButton.click();
+      } else {
+          alert('Does not match')
+      }
+  }
 });
